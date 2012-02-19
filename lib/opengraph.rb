@@ -21,8 +21,10 @@ module OpenGraph
     doc.css('meta').each do |m|
       if m.attribute('property') && m.attribute('property').to_s.match(/^og:(.+)$/i) then
         page[$1.gsub('-','_')] = m.attribute('content').to_s
-      elsif m.attribute('name') && m.attribute('name').to_s.match(/^titl(.+)$/i) || m.attribute('name') && m.attribute('name').to_s.match(/^descr(.+)$/i) then
-        page[$1.gsub('-','_')] = m.attribute('content').to_s
+      elsif m.attribute('name') && m.attribute('name').to_s.match(/title/i) then
+        page['title'] = m.attribute('content').to_s
+      elsif m.attribute('name') && m.attribute('name').to_s.match(/description/i) then
+        page['description'] = m.attribute('content').to_s
       end
     end
     return false if page.keys.empty?
@@ -75,7 +77,7 @@ module OpenGraph
     # If the Open Graph information for this object doesn't contain
     # the mandatory attributes, this will be <tt>false</tt>.
     def valid?
-      MANDATORY_ATTRIBUTES.each{|a| return false unless self[a]}
+      MANDATORY_ATTRIBUTES.each{ |a| return false unless self[a] }
       true
     end
   end
