@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<hashie>, [">= 0"])
-    s.add_dependency(%q<nokogiri>, ["~> 1.4.0"])
+    s.add_dependency(%q<nokogiri>, ["~> 1.5.0"])
     s.add_dependency(%q<rest-client>, ["~> 1.6.0"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<webmock>, [">= 0"])
